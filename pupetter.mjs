@@ -2,20 +2,20 @@
 
 import puppeteer from 'puppeteer';
 
-const CYBOU_URL = 'https://cybouz.domain/cgi-bin/cbag/ag.cgi' // URL of Cybouz it shouold be https://foobar.com/path/to/ag.cgi
+const CYBOU_URL = 'https://your.cybouz.host.com/cgi-bin/cbag/ag.cgi' // URL of Cybouz
 
-const BASIC_USERNAME = 'basicUserName';
-const BASIC_PASSWORD = 'basicPassword';
+const BASIC_USERNAME = 'basicUserName'; // set username for basic auth if it has
+const BASIC_PASSWORD = 'basicPassword'; // set password for basic auth if it has
 
-const LOGIN_USER_INDEX = '1234'; // Index number of select option for your user
-const LOGIN_USER_PASS = 'password'; // Your Login Password
+const LOGIN_USER_INDEX = '1234'; // value of option for your user
+const LOGIN_USER_PASS = 'foobar'; // your login password
 
 
 
 
 async function login(page, url){
   await page.setExtraHTTPHeaders({
-    Authorization: `Basic ${new Buffer(`${BASIC_USERNAME}:${BASIC_PASSWORD}`).toString('base64')}`
+    Authorization: `Basic ${new Buffer.from(`${BASIC_USERNAME}:${BASIC_PASSWORD}`).toString('base64')}`
   });
   await page.goto(url,{waitUntil: "domcontentloaded"}) // ページへ移動
 
